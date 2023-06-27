@@ -50,6 +50,21 @@ app.get('/burritos', async (req, res) => {
   }
 });
 
+app.get('/api/search', async (req, res) => {
+  const { searchTerm = '' } = req.query;  // <-- Providing default value for searchTerm here
+
+  console.log('searchTerm:', searchTerm);  // <-- Debugging searchTerm here
+  console.log('RegExp:', new RegExp(searchTerm, 'i'));  // <-- Debugging RegExp here
+
+  try {
+    const results = await Burrito.find({ restaurantName: new RegExp(searchTerm, 'i') });
+    res.json(results);
+  } catch (error) {
+    console.error(error);  // <-- This will log error details to your server console
+    res.status(500).send(error);
+  }
+});
+
 // ...
 
 app.post('/signup', async (req, res) => {
@@ -94,8 +109,11 @@ app.post('/login', async (req, res) => {
     return res.status(400).json({ success: false, message: 'Incorrect password' });
   }
 
-  // Password is correct, login successful
-  return res.json({ success: true });
+  // Password is correct, generate JWT
+  const token = jwt.sign({ _id: user._id }, jwtSecret, { expiresIn: '24h' });
+
+  // Send JWT to client
+  return res.json({ success: true, token });
 });
 
 app.patch('/users/me', authenticateToken, async (req, res) => {
