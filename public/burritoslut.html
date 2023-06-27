@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>User Registration</h2>
+  <form id="registerForm">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br>
+    <input type="submit" value="Register">
+  </form>
+
+  <h2>User Login</h2>
+  <form id="loginForm">
+    <label for="loginEmail">Email:</label><br>
+    <input type="text" id="loginEmail" name="email"><br>
+    <label for="loginPassword">Password:</label><br>
+    <input type="password" id="loginPassword" name="password"><br>
+    <input type="submit" value="Login">
+  </form>
+
+  <h2>Create a Burrito Review</h2>
+  <form id="reviewForm">
+    <label for="review">Review:</label><br>
+    <textarea id="review" name="review"></textarea><br>
+    <input type="submit" value="Submit Review">
+  </form>
+
+<script>
+  // Adjust the URLs if you're not using localhost:3000
+
+  // User Registration Form
+  document.getElementById('registerForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const username = event.target.username.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    fetch('http://localhost:3000/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        password
+      })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  });
+
+  // User Login Form
+  document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      localStorage.setItem('token', data.token); // Store the token in local storage for later use
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  });
+
+  // Submit Burrito Review
+  document.getElementById('reviewForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const review = event.target.review.value;
+
+    fetch('http://localhost:3000/burritos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token') // Retrieve the token from local storage
+      },
+      body: JSON.stringify({
+        review
+      })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  });
+</script>
+
+</body>
+</html>
