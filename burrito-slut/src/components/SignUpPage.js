@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+//SignUpPage.js
+
 import axios from 'axios';  // Import axios
 
 const SignUpPage = () => {
