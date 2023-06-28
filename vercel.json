@@ -1,0 +1,23 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "/package.json",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "/burrito-slut/package.json",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*).js",
+            "dest": "/$1.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/burrito-slut/build/$1"
+        }
+    ]
+}
