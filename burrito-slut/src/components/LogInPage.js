@@ -1,6 +1,6 @@
 //LoginPage.js
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import api from '../api'; // adjust path based on your project structure
 
 const LoginPage = () => {
