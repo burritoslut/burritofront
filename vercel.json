@@ -1,23 +1,29 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "/package.json",
-            "use": "@vercel/node"
-        },
-        {
-            "src": "/burrito-slut/package.json",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*).js",
-            "dest": "/$1.js"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/burrito-slut/build/static/$1"
-        }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "./package.json",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "./burrito-slut/package.json",
+      "use": "@vercel/static-build",
+      "config": {"distDir": "build"}
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1.js"
+    },
+    {
+      "src": "/(.*).(js|css|map|json)",
+      "headers": {"cache-control": "s-maxage=31536000,immutable"},
+      "dest": "/burrito-slut/build/$1.$2"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/burrito-slut/build/index.html"
+    }
+  ]
 }
