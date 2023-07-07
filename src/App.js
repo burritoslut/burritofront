@@ -1,6 +1,6 @@
 //app.js
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import LogInPage from './components/LogInPage';
@@ -13,14 +13,14 @@ function App() {
   return (
     <Router>
       <NavBar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LogInPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/submitreview" element={<BurritoReviewPage />} />
-      </Routes>
+      <Switch>
+        <Route path="/" component={HomePage} />
+        <Route path="/login" component={LogInPage} />
+        <Route path="/signup" component={SignUpPage} />
+        <Route path="/search" component={SearchPage} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/submitreview" component={BurritoReviewPage} />
+      </Switch>
     </Router>
   );
 }
