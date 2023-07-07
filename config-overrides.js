@@ -1,12 +1,11 @@
-const { override, addWebpackPlugin } = require('customize-cra');
-const webpack = require('webpack');
+const { override } = require('customize-cra');
 
 module.exports = override(
-  addWebpackPlugin(
-    new webpack.Configuration({
-      output: {
-        hashFunction: 'xxhash64'
-      }
-    })
-  )
+  function overrideHashFunction(config) {
+    config.output = {
+      ...config.output,
+      hashFunction: 'xxhash64',
+    };
+    return config;
+  }
 );
