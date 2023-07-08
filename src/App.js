@@ -14,12 +14,12 @@ function App() {
     <Router>
       <NavBar />
       <Switch>
-        <Route path="/" component={HomePage} />
-        <Route path="/login" component={LogInPage} />
-        <Route path="/signup" component={SignUpPage} />
-        <Route path="/search" component={SearchPage} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/submitreview" component={BurritoReviewPage} />
+        <Route exact path="/login" component={LogInPage} />
+        <Route exact path="/signup" component={SignUpPage} />
+        <Route exact path="/search" component={SearchPage} />
+        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/submitreview" component={BurritoReviewPage} />
+        <Route exact path="/" component={HomePage} />
       </Switch>
     </Router>
   );
