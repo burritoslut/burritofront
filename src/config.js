@@ -1,3 +1,3 @@
 // config.js
 
-export const SERVER_URL = 'https://burritoserver-fcf8b441139d.herokuapp.com';
+export const SERVER_URL = 'https://burritoserver-fcf9b552240d.herokuapp.com/';
