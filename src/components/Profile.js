@@ -1,5 +1,6 @@
 // Profile.js
 
+import { SERVER_URL } from '../config';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -9,11 +10,11 @@ const Profile = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    axios.get('/users/me', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
+    axios.get(`${SERVER_URL}/users/me`, {
+  headers: {
+    'Authorization': `Bearer ${token}`
+  }
+})
     .then((response) => {
       setUser(response.data);
     })

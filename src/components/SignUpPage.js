@@ -1,5 +1,6 @@
 //SignUpPage.js
 
+import { SERVER_URL } from '../config';
 import { useState } from 'react';
 import axios from 'axios';  // Import axios
 
@@ -12,11 +13,11 @@ const SignUpPage = () => {
     event.preventDefault();
     try {
       // make a POST request to the /signup endpoint
-      const response = await axios.post('https://protected-escarpment-93524-e347b697cce9.herokuapp.com/signup', {
-        username,
-        email,
-        password,
-      });
+      const response = await axios.post(`${SERVER_URL}/signup`, {
+  username,
+  email,
+  password,
+});
       console.log(response.data);  // Print the response data for now
     } catch (error) {
       console.error('There was an error!', error);

@@ -1,5 +1,6 @@
 //LoginPage.js
 
+import { SERVER_URL } from '../config';
 import { useState } from 'react';
 import api from '../api'; // adjust path based on your project structure
 
@@ -14,7 +15,7 @@ const LoginPage = () => {
   e.preventDefault();
 
   try {
-    const response = await api.post('https://protected-escarpment-93524-e347b697cce9.herokuapp.com/login', { email, password });
+    const response = await api.post(`${SERVER_URL}/login`, { email, password });
 
     if (response.data.success) {
       // Login was successful

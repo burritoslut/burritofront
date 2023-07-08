@@ -1,5 +1,6 @@
 //SearchPage.js
 
+import { SERVER_URL } from '../config';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -16,9 +17,9 @@ const SearchPage = () => {
     try {
       let res;
       if (searchTerm) {
-        res = await axios.get(`https://protected-escarpment-93524-e347b697cce9.herokuapp.com/api/search?searchTerm=${searchTerm}`);
+        res = await axios.get(`${SERVER_URL}/api/search?searchTerm=${searchTerm}`);
       } else {
-        res = await axios.get('https://protected-escarpment-93524-e347b697cce9.herokuapp.com/burritos');
+        res = await axios.get(`${SERVER_URL}/burritos`);
       }
       setResults(res.data);
     } catch (error) {
