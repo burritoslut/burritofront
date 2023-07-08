@@ -14,7 +14,7 @@ const LoginPage = () => {
   e.preventDefault();
 
   try {
-    const response = await api.post('/login', { email, password });
+    const response = await api.post('https://protected-escarpment-93524-e347b697cce9.herokuapp.com/login', { email, password });
 
     if (response.data.success) {
       // Login was successful

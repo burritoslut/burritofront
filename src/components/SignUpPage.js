@@ -12,7 +12,7 @@ const SignUpPage = () => {
     event.preventDefault();
     try {
       // make a POST request to the /signup endpoint
-      const response = await axios.post('http://localhost:5000/signup', {
+      const response = await axios.post('https://protected-escarpment-93524-e347b697cce9.herokuapp.com/signup', {
         username,
         email,
         password,

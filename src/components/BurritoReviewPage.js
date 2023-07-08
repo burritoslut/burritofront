@@ -32,7 +32,7 @@ const BurritoReviewPage = () => {
   event.preventDefault();
   try {
     const token = localStorage.getItem('token'); // assuming you're storing the JWT in local storage
-    const response = await axios.post('http://localhost:5000/burritos', review, {
+    const response = await axios.post('https://protected-escarpment-93524-e347b697cce9.herokuapp.com/burritos', review, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
